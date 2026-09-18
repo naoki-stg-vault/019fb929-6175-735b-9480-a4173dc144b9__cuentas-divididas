@@ -8,6 +8,7 @@ export interface ReceiptItem {
   confidence?: number; // Score from 0 to 1 detected by OCR (e.g. < 0.7 needs review)
   isManuallyAdded?: boolean;
   notes?: string;
+  assignedParticipantIds?: string[];
 }
 
 export interface ReceiptTotals {
