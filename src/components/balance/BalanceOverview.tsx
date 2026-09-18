@@ -1,15 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { BalanceSummary, ParticipantBalance } from '@/types/balance';
+import { BalanceSummary } from '@/types/balance';
 import { formatCurrency } from '@/lib/share-utils';
 
 interface BalanceOverviewProps {
   summary: BalanceSummary;
-  receiptTitle?: string;
 }
 
-export function BalanceOverview({ summary, receiptTitle }: BalanceOverviewProps) {
+export function BalanceOverview({ summary }: BalanceOverviewProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const currency = summary.currency;
 

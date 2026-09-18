@@ -26,19 +26,15 @@ export function ShareSummaryModal({
   const [includeStatus, setIncludeStatus] = useState(true);
   const [includeLink, setIncludeLink] = useState(true);
   const [copyFeedback, setCopyFeedback] = useState<string | null>(null);
-  const [canWebShare, setCanWebShare] = useState(false);
 
-  useEffect(() => {
-    if (
+  const canWebShare = React.useSyncExternalStore(
+    () => () => {},
+    () =>
       typeof navigator !== 'undefined' &&
       'share' in navigator &&
-      typeof navigator.share === 'function' &&
-      'canShare' in navigator &&
-      typeof navigator.canShare === 'function'
-    ) {
-      setCanWebShare(true);
-    }
-  }, []);
+      typeof navigator.share === 'function',
+    () => false
+  );
 
   const shareUrl = useMemo(() => {
     return getShareableLink(receipt.id);
