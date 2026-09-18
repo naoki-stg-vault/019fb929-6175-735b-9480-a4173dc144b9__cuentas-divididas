@@ -58,3 +58,10 @@ test("validateReceiptItem checks for required fields and positive values", () =>
   assert.equal(validateReceiptItem({ description: "Pizza", quantity: 0, unitPrice: 10 }).valid, false);
   assert.equal(validateReceiptItem({ description: "Pizza", quantity: 1, unitPrice: -5 }).valid, false);
 });
+
+test("formatCurrency formats amounts correctly", () => {
+  const formatted = formatCurrency(1250.5, "$");
+  assert.ok(formatted.includes("$"));
+  assert.ok(formatted.includes("1") && formatted.includes("250"));
+});
+
