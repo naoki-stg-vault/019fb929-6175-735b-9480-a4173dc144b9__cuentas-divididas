@@ -4,7 +4,6 @@ import {
   ItemAssignmentSummary,
   ItemSplitResult,
   ParticipantSummary,
-  SplitMode,
 } from "@/types/assignment";
 import { Participant } from "@/types/participant";
 import { roundCurrency } from "./calculations";
@@ -78,7 +77,7 @@ export function splitByShares(
   });
 
   const allocatedCents = allocations.reduce((acc, a) => acc + a.floorCents, 0);
-  let centsToDistribute = totalCents - allocatedCents;
+  const centsToDistribute = totalCents - allocatedCents;
 
   // Sort by remainder descending to give leftover cents to those with largest fraction
   const sortedByRemainder = [...allocations].sort(

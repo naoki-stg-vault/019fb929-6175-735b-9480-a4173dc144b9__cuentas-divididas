@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import {
   Participant,
   PARTICIPANT_PALETTE,
-  ParticipantColorOption,
-  getParticipantColor,
 } from "@/types/participant";
 import { ParticipantBadge } from "./ParticipantBadge";
 
