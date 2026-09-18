@@ -2,13 +2,25 @@
 
 import React, { useState } from "react";
 import { EditableItemsTable } from "@/components/items";
+import { ItemAssignmentView } from "@/components/assignment";
 import { SAMPLE_OCR_ITEMS, ALTERNATIVE_RECEIPT_ITEMS } from "@/data/mockReceipt";
 import { ReceiptItem, ReceiptTotals } from "@/types/item";
+import { Participant } from "@/types/participant";
+import { ItemAssignment } from "@/types/assignment";
+
+const DEFAULT_SAMPLE_PARTICIPANTS: Participant[] = [
+  { id: "p1", name: "Ana", color: "emerald" },
+  { id: "p2", name: "Carlos", color: "blue" },
+  { id: "p3", name: "Lucía", color: "purple" },
+];
 
 export default function Home() {
+  const [activeStep, setActiveStep] = useState<"items" | "assignment">("items");
   const [activeReceiptPreset, setActiveReceiptPreset] = useState<"burgers" | "pizzas" | "empty">("burgers");
   const [currentItems, setCurrentItems] = useState<ReceiptItem[]>(SAMPLE_OCR_ITEMS);
   const [lastCalculatedTotals, setLastCalculatedTotals] = useState<ReceiptTotals | null>(null);
+  const [participants, setParticipants] = useState<Participant[]>(DEFAULT_SAMPLE_PARTICIPANTS);
+  const [assignments, setAssignments] = useState<Record<string, ItemAssignment>>({});
   const [isMobileSimulated, setIsMobileSimulated] = useState(false);
   const [showJsonInspector, setShowJsonInspector] = useState(false);
 
@@ -17,6 +29,15 @@ export default function Home() {
 
   const handleSelectPreset = (preset: "burgers" | "pizzas" | "empty") => {
     setActiveReceiptPreset(preset);
+    const newItems =
+      preset === "burgers"
+        ? SAMPLE_OCR_ITEMS
+        : preset === "pizzas"
+        ? ALTERNATIVE_RECEIPT_ITEMS
+        : [];
+    setCurrentItems(newItems);
+    setParticipants(preset === "empty" ? [] : DEFAULT_SAMPLE_PARTICIPANTS);
+    setAssignments({});
     setTableKey(`${preset}_${Date.now()}`);
   };
 
@@ -42,7 +63,9 @@ export default function Home() {
                   Cuentas Divididas
                 </h1>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  Paso 2: Revisión y corrección de productos y precios detectados por OCR
+                  {activeStep === "items"
+                    ? "Paso 1: Revisión y corrección de productos y precios detectados por OCR"
+                    : "Paso 2: Gestión de participantes y asignación equitativa o personalizada"}
                 </p>
               </div>
             </div>
@@ -112,6 +135,39 @@ export default function Home() {
           </div>
         </header>
 
+        {/* Step Navigation Tabs */}
+        <div className="flex items-center gap-2 p-1 bg-zinc-200/70 dark:bg-zinc-800/70 rounded-2xl max-w-md">
+          <button
+            type="button"
+            onClick={() => setActiveStep("items")}
+            className={`flex-1 py-2 px-3 text-xs sm:text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2 ${
+              activeStep === "items"
+                ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs"
+                : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+            }`}
+          >
+            <span>1. Revisar Productos</span>
+            <span className="px-1.5 py-0.2 text-[10px] rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 font-bold">
+              {currentItems.length}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveStep("assignment")}
+            className={`flex-1 py-2 px-3 text-xs sm:text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2 ${
+              activeStep === "assignment"
+                ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs"
+                : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100"
+            }`}
+          >
+            <span>2. Participantes y Reparto</span>
+            <span className="px-1.5 py-0.2 text-[10px] rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold">
+              {participants.length}
+            </span>
+          </button>
+        </div>
+
         {/* Content Container (Normal or Mobile Simulated) */}
         <div
           className={`mx-auto transition-all duration-300 ${
@@ -128,20 +184,68 @@ export default function Home() {
             </div>
           )}
 
-          <EditableItemsTable
-            key={tableKey}
-            initialItems={initialItemsForCurrentPreset}
-            initialTaxPercent={0}
-            initialTipPercent={10}
-            currencySymbol="$"
-            onItemsChange={(items, totals) => {
-              setCurrentItems(items);
-              setLastCalculatedTotals(totals);
-            }}
-            onSave={(items, totals) => {
-              console.log("Guardando ítems revisados:", { items, totals });
-            }}
-          />
+          {/* STEP 1: ITEMS REVIEW */}
+          {activeStep === "items" && (
+            <div className="space-y-4">
+              <EditableItemsTable
+                key={tableKey}
+                initialItems={initialItemsForCurrentPreset}
+                initialTaxPercent={0}
+                initialTipPercent={10}
+                currencySymbol="$"
+                onItemsChange={(items, totals) => {
+                  setCurrentItems(items);
+                  setLastCalculatedTotals(totals);
+                }}
+                onSave={(items, totals) => {
+                  setCurrentItems(items);
+                  setLastCalculatedTotals(totals);
+                  setActiveStep("assignment");
+                }}
+              />
+
+              <div className="flex justify-end pt-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveStep("assignment")}
+                  className="px-5 py-2.5 text-xs sm:text-sm font-bold rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition-all flex items-center gap-2"
+                >
+                  <span>Continuar a Asignación de Participantes</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* STEP 2: PARTICIPANTS & ASSIGNMENT */}
+          {activeStep === "assignment" && (
+            <div className="space-y-4">
+              <ItemAssignmentView
+                items={currentItems}
+                initialParticipants={participants}
+                initialAssignments={assignments}
+                currencySymbol="$"
+                onAssignmentsChange={(newAssignments, newParticipants) => {
+                  setAssignments(newAssignments);
+                  setParticipants(newParticipants);
+                }}
+                onSave={(newAssignments, newParticipants) => {
+                  setAssignments(newAssignments);
+                  setParticipants(newParticipants);
+                }}
+              />
+
+              <div className="flex items-center justify-between pt-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveStep("items")}
+                  className="px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                >
+                  ← Volver a Productos
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Live State JSON Inspector for QA and API debugging */}
@@ -152,7 +256,8 @@ export default function Home() {
                 Estado Actual (JSON persistible)
               </span>
               <span className="text-zinc-500">
-                {currentItems.length} ítems / Total: ${lastCalculatedTotals?.total ?? 0}
+                {currentItems.length} ítems / {participants.length} participantes / Total: $
+                {lastCalculatedTotals?.total ?? 0}
               </span>
             </div>
             <pre className="max-h-80 overflow-auto bg-black/60 p-3 rounded-xl text-[11px] text-zinc-300">
@@ -160,6 +265,8 @@ export default function Home() {
                 {
                   itemsCount: currentItems.length,
                   totals: lastCalculatedTotals,
+                  participants,
+                  assignments,
                   items: currentItems,
                 },
                 null,
