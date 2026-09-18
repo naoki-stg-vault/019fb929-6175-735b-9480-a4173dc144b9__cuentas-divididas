@@ -150,8 +150,10 @@ export async function shareOrCopy(data: {
 }): Promise<ShareResult> {
   if (
     typeof navigator !== 'undefined' &&
-    navigator.share &&
-    navigator.canShare &&
+    'share' in navigator &&
+    typeof navigator.share === 'function' &&
+    'canShare' in navigator &&
+    typeof navigator.canShare === 'function' &&
     navigator.canShare({ text: data.text })
   ) {
     try {
