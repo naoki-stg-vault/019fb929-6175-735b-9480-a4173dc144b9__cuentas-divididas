@@ -1,69 +1,174 @@
-import Image from "next/image";
+"use client";
+
+import React, { useState } from "react";
+import { EditableItemsTable } from "@/components/items";
+import { SAMPLE_OCR_ITEMS, ALTERNATIVE_RECEIPT_ITEMS } from "@/data/mockReceipt";
+import { ReceiptItem, ReceiptTotals } from "@/types/item";
 
 export default function Home() {
+  const [activeReceiptPreset, setActiveReceiptPreset] = useState<"burgers" | "pizzas" | "empty">("burgers");
+  const [currentItems, setCurrentItems] = useState<ReceiptItem[]>(SAMPLE_OCR_ITEMS);
+  const [lastCalculatedTotals, setLastCalculatedTotals] = useState<ReceiptTotals | null>(null);
+  const [isMobileSimulated, setIsMobileSimulated] = useState(false);
+  const [showJsonInspector, setShowJsonInspector] = useState(false);
+
+  // Key to force reset child table state when preset changes
+  const [tableKey, setTableKey] = useState("burgers");
+
+  const handleSelectPreset = (preset: "burgers" | "pizzas" | "empty") => {
+    setActiveReceiptPreset(preset);
+    setTableKey(`${preset}_${Date.now()}`);
+  };
+
+  const initialItemsForCurrentPreset =
+    activeReceiptPreset === "burgers"
+      ? SAMPLE_OCR_ITEMS
+      : activeReceiptPreset === "pizzas"
+      ? ALTERNATIVE_RECEIPT_ITEMS
+      : [];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 py-6 sm:py-10 px-3 sm:px-6">
+      <div className="max-w-6xl mx-auto space-y-6">
+        {/* App Bar / Header */}
+        <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-zinc-200 dark:border-zinc-800">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-lg shadow-sm">
+                CD
+              </span>
+              <div>
+                <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">
+                  Cuentas Divididas
+                </h1>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Paso 2: Revisión y corrección de productos y precios detectados por OCR
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick preset selector & simulation toggles */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center bg-zinc-200/80 dark:bg-zinc-800 p-1 rounded-xl text-xs font-medium">
+              <button
+                type="button"
+                onClick={() => handleSelectPreset("burgers")}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  activeReceiptPreset === "burgers"
+                    ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs font-semibold"
+                    : "text-zinc-600 dark:text-zinc-400"
+                }`}
+              >
+                Ticket Bar
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSelectPreset("pizzas")}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  activeReceiptPreset === "pizzas"
+                    ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs font-semibold"
+                    : "text-zinc-600 dark:text-zinc-400"
+                }`}
+              >
+                Ticket Pizzería
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSelectPreset("empty")}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  activeReceiptPreset === "empty"
+                    ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs font-semibold"
+                    : "text-zinc-600 dark:text-zinc-400"
+                }`}
+              >
+                En Blanco
+              </button>
+            </div>
+
+            {/* Mobile Preview Viewport Toggle */}
+            <button
+              type="button"
+              onClick={() => setIsMobileSimulated(!isMobileSimulated)}
+              className={`px-3 py-1.5 text-xs font-medium rounded-xl border transition-colors flex items-center gap-1.5 ${
+                isMobileSimulated
+                  ? "border-emerald-500 bg-emerald-50 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300"
+                  : "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300"
+              }`}
+              title="Alternar vista enmarcada para simulación mobile de 390px"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <span>📱</span>
+              <span className="hidden sm:inline">Vista Móvil</span>
+            </button>
+
+            {/* JSON Debug toggle */}
+            <button
+              type="button"
+              onClick={() => setShowJsonInspector(!showJsonInspector)}
+              className="px-3 py-1.5 text-xs font-medium rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              {showJsonInspector ? "Ocultar JSON" : "Ver JSON"}
+            </button>
+          </div>
+        </header>
+
+        {/* Content Container (Normal or Mobile Simulated) */}
+        <div
+          className={`mx-auto transition-all duration-300 ${
+            isMobileSimulated
+              ? "max-w-[420px] p-4 rounded-3xl border-4 border-zinc-300 dark:border-zinc-700 bg-zinc-100/60 dark:bg-zinc-900/40 shadow-2xl"
+              : "w-full"
+          }`}
+        >
+          {isMobileSimulated && (
+            <div className="mb-3 text-center">
+              <span className="inline-block px-3 py-0.5 text-[11px] font-semibold bg-zinc-200 dark:bg-zinc-800 rounded-full text-zinc-600 dark:text-zinc-400">
+                Simulador Mobile (390px)
+              </span>
+            </div>
+          )}
+
+          <EditableItemsTable
+            key={tableKey}
+            initialItems={initialItemsForCurrentPreset}
+            initialTaxPercent={0}
+            initialTipPercent={10}
+            currencySymbol="$"
+            onItemsChange={(items, totals) => {
+              setCurrentItems(items);
+              setLastCalculatedTotals(totals);
+            }}
+            onSave={(items, totals) => {
+              console.log("Guardando ítems revisados:", { items, totals });
+            }}
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+        {/* Live State JSON Inspector for QA and API debugging */}
+        {showJsonInspector && (
+          <div className="bg-zinc-900 text-zinc-100 p-4 sm:p-5 rounded-2xl border border-zinc-800 space-y-3 font-mono text-xs">
+            <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
+              <span className="font-semibold text-emerald-400">
+                Estado Actual (JSON persistible)
+              </span>
+              <span className="text-zinc-500">
+                {currentItems.length} ítems / Total: ${lastCalculatedTotals?.total ?? 0}
+              </span>
+            </div>
+            <pre className="max-h-80 overflow-auto bg-black/60 p-3 rounded-xl text-[11px] text-zinc-300">
+              {JSON.stringify(
+                {
+                  itemsCount: currentItems.length,
+                  totals: lastCalculatedTotals,
+                  items: currentItems,
+                },
+                null,
+                2
+              )}
+            </pre>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
