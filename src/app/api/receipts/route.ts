@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { getAllReceipts, createReceipt } from '@/lib/storage';
-import { CreateReceiptDTO } from '@/types/receipt';
+import { getAllReceipts, createReceipt } from '../../../lib/storage';
+import { CreateReceiptDTO } from '../../../types/receipt';
 
 export async function GET() {
   try {

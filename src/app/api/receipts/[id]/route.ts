@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { getReceiptById, updateReceipt, deleteReceipt, isValidId } from '@/lib/storage';
-import { UpdateReceiptDTO } from '@/types/receipt';
+import { getReceiptById, updateReceipt, deleteReceipt, isValidId } from '../../../../lib/storage';
+import { UpdateReceiptDTO } from '../../../../types/receipt';
 
 export async function GET(
   _request: Request,

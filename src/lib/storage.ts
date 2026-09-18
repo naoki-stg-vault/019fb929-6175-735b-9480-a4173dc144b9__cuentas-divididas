@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import crypto from 'crypto';
-import { CreateReceiptDTO, Receipt, ReceiptItem, Participant, UpdateReceiptDTO } from '@/types/receipt';
+import { CreateReceiptDTO, Receipt, ReceiptItem, Participant, UpdateReceiptDTO } from '../types/receipt';
 import { calculateSplit } from './split';
 
 function getDataDir(): string {

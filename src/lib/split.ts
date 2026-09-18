@@ -1,4 +1,4 @@
-import { ItemSplitDetail, ParticipantSplit, Receipt, Split } from '@/types/receipt';
+import { ItemSplitDetail, ParticipantSplit, Receipt, Split } from '../types/receipt';
 
 /**
  * Calculates itemized split, prorated taxes and tips, and total balances per participant.
