@@ -3,50 +3,28 @@
 import React, { useState } from "react";
 import { EditableItemsTable } from "@/components/items";
 import { ItemAssignmentView } from "@/components/assignment";
-import { SAMPLE_OCR_ITEMS, ALTERNATIVE_RECEIPT_ITEMS } from "@/data/mockReceipt";
 import { ReceiptItem, ReceiptTotals } from "@/types/item";
 import { Participant } from "@/types/participant";
 import { ItemAssignment } from "@/types/assignment";
 
-const DEFAULT_SAMPLE_PARTICIPANTS: Participant[] = [
-  { id: "p1", name: "Ana", color: "emerald" },
-  { id: "p2", name: "Carlos", color: "blue" },
-  { id: "p3", name: "Lucía", color: "purple" },
-];
-
 export default function Home() {
   const [activeStep, setActiveStep] = useState<"items" | "assignment">("items");
-  const [activeReceiptPreset, setActiveReceiptPreset] = useState<"burgers" | "pizzas" | "empty">("burgers");
-  const [currentItems, setCurrentItems] = useState<ReceiptItem[]>(SAMPLE_OCR_ITEMS);
+  const [currentItems, setCurrentItems] = useState<ReceiptItem[]>([]);
   const [lastCalculatedTotals, setLastCalculatedTotals] = useState<ReceiptTotals | null>(null);
-  const [participants, setParticipants] = useState<Participant[]>(DEFAULT_SAMPLE_PARTICIPANTS);
+  const [participants, setParticipants] = useState<Participant[]>([]);
   const [assignments, setAssignments] = useState<Record<string, ItemAssignment>>({});
   const [isMobileSimulated, setIsMobileSimulated] = useState(false);
   const [showJsonInspector, setShowJsonInspector] = useState(false);
 
-  // Key to force reset child table state when preset changes
-  const [tableKey, setTableKey] = useState("burgers");
+  // Key to force reset child table state when cleared
+  const [tableKey, setTableKey] = useState("items_table");
 
-  const handleSelectPreset = (preset: "burgers" | "pizzas" | "empty") => {
-    setActiveReceiptPreset(preset);
-    const newItems =
-      preset === "burgers"
-        ? SAMPLE_OCR_ITEMS
-        : preset === "pizzas"
-        ? ALTERNATIVE_RECEIPT_ITEMS
-        : [];
-    setCurrentItems(newItems);
-    setParticipants(preset === "empty" ? [] : DEFAULT_SAMPLE_PARTICIPANTS);
+  const handleClearAll = () => {
+    setCurrentItems([]);
+    setParticipants([]);
     setAssignments({});
-    setTableKey(`${preset}_${Date.now()}`);
+    setTableKey(`table_${Date.now()}`);
   };
-
-  const initialItemsForCurrentPreset =
-    activeReceiptPreset === "burgers"
-      ? SAMPLE_OCR_ITEMS
-      : activeReceiptPreset === "pizzas"
-      ? ALTERNATIVE_RECEIPT_ITEMS
-      : [];
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 py-6 sm:py-10 px-3 sm:px-6">
@@ -55,7 +33,7 @@ export default function Home() {
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-zinc-200 dark:border-zinc-800">
           <div>
             <div className="flex items-center gap-3">
-              <span className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-lg shadow-sm">
+              <span className="w-9 h-9 rounded-xl bg-fuchsia-600 text-white flex items-center justify-center font-black text-lg shadow-sm">
                 CD
               </span>
               <div>
@@ -64,50 +42,25 @@ export default function Home() {
                 </h1>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400">
                   {activeStep === "items"
-                    ? "Paso 1: Revisión y corrección de productos y precios detectados por OCR"
+                    ? "Paso 1: Carga y revisión de productos y precios"
                     : "Paso 2: Gestión de participantes y asignación equitativa o personalizada"}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Quick preset selector & simulation toggles */}
+          {/* Quick actions & simulation toggles */}
           <div className="flex items-center gap-2 flex-wrap">
-            <div className="flex items-center bg-zinc-200/80 dark:bg-zinc-800 p-1 rounded-xl text-xs font-medium">
+            {(currentItems.length > 0 || participants.length > 0) && (
               <button
                 type="button"
-                onClick={() => handleSelectPreset("burgers")}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
-                  activeReceiptPreset === "burgers"
-                    ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs font-semibold"
-                    : "text-zinc-600 dark:text-zinc-400"
-                }`}
+                onClick={handleClearAll}
+                className="px-3 py-1.5 text-xs font-medium rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors"
+                title="Limpiar todos los productos y participantes"
               >
-                Ticket Bar
+                Limpiar datos
               </button>
-              <button
-                type="button"
-                onClick={() => handleSelectPreset("pizzas")}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
-                  activeReceiptPreset === "pizzas"
-                    ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs font-semibold"
-                    : "text-zinc-600 dark:text-zinc-400"
-                }`}
-              >
-                Ticket Pizzería
-              </button>
-              <button
-                type="button"
-                onClick={() => handleSelectPreset("empty")}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
-                  activeReceiptPreset === "empty"
-                    ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs font-semibold"
-                    : "text-zinc-600 dark:text-zinc-400"
-                }`}
-              >
-                En Blanco
-              </button>
-            </div>
+            )}
 
             {/* Mobile Preview Viewport Toggle */}
             <button
@@ -115,7 +68,7 @@ export default function Home() {
               onClick={() => setIsMobileSimulated(!isMobileSimulated)}
               className={`px-3 py-1.5 text-xs font-medium rounded-xl border transition-colors flex items-center gap-1.5 ${
                 isMobileSimulated
-                  ? "border-emerald-500 bg-emerald-50 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300"
+                  ? "border-fuchsia-500 bg-fuchsia-50 text-fuchsia-800 dark:bg-fuchsia-950/40 dark:text-fuchsia-300"
                   : "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300"
               }`}
               title="Alternar vista enmarcada para simulación mobile de 390px"
@@ -189,7 +142,7 @@ export default function Home() {
             <div className="space-y-4">
               <EditableItemsTable
                 key={tableKey}
-                initialItems={initialItemsForCurrentPreset}
+                initialItems={currentItems}
                 initialTaxPercent={0}
                 initialTipPercent={10}
                 currencySymbol="$"
@@ -252,7 +205,7 @@ export default function Home() {
         {showJsonInspector && (
           <div className="bg-zinc-900 text-zinc-100 p-4 sm:p-5 rounded-2xl border border-zinc-800 space-y-3 font-mono text-xs">
             <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
-              <span className="font-semibold text-emerald-400">
+              <span className="font-semibold text-fuchsia-400">
                 Estado Actual (JSON persistible)
               </span>
               <span className="text-zinc-500">

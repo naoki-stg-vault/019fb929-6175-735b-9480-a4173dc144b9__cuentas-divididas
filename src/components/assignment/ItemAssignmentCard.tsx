@@ -118,7 +118,7 @@ export function ItemAssignmentCard({
           : "Equitativo";
 
       return (
-        <span className="px-2 py-0.5 text-[11px] font-semibold rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 flex items-center gap-1">
+        <span className="px-2 py-0.5 text-[11px] font-semibold rounded-full bg-fuchsia-100 dark:bg-fuchsia-950/70 text-fuchsia-800 dark:text-fuchsia-300 flex items-center gap-1">
           <span>✓</span>
           <span>
             {assignedParticipantIds.size}{" "}
@@ -148,7 +148,7 @@ export function ItemAssignmentCard({
     <div
       className={`p-3.5 sm:p-4 rounded-2xl border transition-all ${
         summary.status === "assigned"
-          ? "border-emerald-200/80 dark:border-emerald-900/50 bg-white dark:bg-zinc-900"
+          ? "border-fuchsia-200/80 dark:border-fuchsia-900/50 bg-white dark:bg-zinc-900"
           : summary.status === "partial"
           ? "border-amber-300/80 dark:border-amber-900/50 bg-amber-50/20 dark:bg-amber-950/10"
           : "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
@@ -172,7 +172,7 @@ export function ItemAssignmentCard({
           <div className="text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-2">
             <span>Cantidad: {item.quantity}</span>
             <span>•</span>
-            <span className="font-bold text-emerald-600 dark:text-emerald-400 text-sm">
+            <span className="font-bold text-fuchsia-600 dark:text-fuchsia-400 text-sm">
               {formatCurrency(item.totalPrice, currencySymbol)}
             </span>
           </div>

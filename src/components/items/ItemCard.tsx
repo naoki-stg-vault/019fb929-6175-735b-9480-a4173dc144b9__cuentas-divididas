@@ -139,13 +139,13 @@ export function ItemCard({
               if (e.key === "Enter") setIsEditingDescription(false);
             }}
             autoFocus
-            className="w-full px-2.5 py-1 text-sm font-medium rounded-lg border border-emerald-500 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none ring-2 ring-emerald-500/20"
+            className="w-full px-2.5 py-1 text-sm font-medium rounded-lg border border-fuchsia-500 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none ring-2 ring-fuchsia-500/20"
           />
         ) : (
           <button
             type="button"
             onClick={() => setIsEditingDescription(true)}
-            className="text-left w-full text-sm font-semibold text-zinc-900 dark:text-zinc-100 hover:text-emerald-600 dark:hover:text-emerald-400 flex items-center gap-1.5 group"
+            className="text-left w-full text-sm font-semibold text-zinc-900 dark:text-zinc-100 hover:text-fuchsia-600 dark:hover:text-fuchsia-400 flex items-center gap-1.5 group"
           >
             <span>{item.description || "(Sin nombre)"}</span>
             <svg
@@ -214,7 +214,7 @@ export function ItemCard({
                 inputMode="decimal"
                 value={item.unitPrice}
                 onChange={(e) => handlePriceChange(e.target.value)}
-                className="w-20 px-2 py-1 text-right text-xs font-semibold rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="w-20 px-2 py-1 text-right text-xs font-semibold rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
               />
             </div>
           )}
@@ -225,7 +225,7 @@ export function ItemCard({
           <span className="block text-[10px] text-zinc-400 uppercase tracking-wider">
             Total
           </span>
-          <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+          <span className="text-sm font-bold text-fuchsia-600 dark:text-fuchsia-400">
             {formatCurrency(item.totalPrice, currencySymbol)}
           </span>
         </div>

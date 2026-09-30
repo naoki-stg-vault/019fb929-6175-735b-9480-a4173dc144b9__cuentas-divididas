@@ -61,7 +61,7 @@ export default function ReceiptAssignPage({
     return (
       <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 p-6 flex items-center justify-center">
         <div className="flex items-center gap-3 text-zinc-600 dark:text-zinc-400">
-          <div className="w-5 h-5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+          <div className="w-5 h-5 border-2 border-fuchsia-500 border-t-transparent rounded-full animate-spin" />
           <span className="text-sm font-semibold">Cargando comprobante...</span>
         </div>
       </div>
@@ -180,14 +180,14 @@ export default function ReceiptAssignPage({
 
           {isSaving && (
             <span className="text-xs text-zinc-500 flex items-center gap-1.5">
-              <span className="w-3.5 h-3.5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+              <span className="w-3.5 h-3.5 border-2 border-fuchsia-500 border-t-transparent rounded-full animate-spin" />
               Guardando...
             </span>
           )}
         </div>
 
         {saveFeedback && (
-          <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-semibold">
+          <div className="p-3 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800 text-fuchsia-800 dark:text-fuchsia-300 text-xs font-semibold">
             {saveFeedback}
           </div>
         )}

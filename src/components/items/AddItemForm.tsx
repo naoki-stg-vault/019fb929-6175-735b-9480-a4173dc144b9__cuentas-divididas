@@ -102,9 +102,9 @@ export function AddItemForm({
       <button
         type="button"
         onClick={handleOpen}
-        className="w-full py-3.5 px-4 rounded-xl border-2 border-dashed border-zinc-300 dark:border-zinc-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 text-zinc-600 dark:text-zinc-300 hover:text-emerald-700 dark:hover:text-emerald-400 font-medium text-sm flex items-center justify-center gap-2 transition-all group"
+        className="w-full py-3.5 px-4 rounded-xl border-2 border-dashed border-zinc-300 dark:border-zinc-700 hover:border-fuchsia-500 dark:hover:border-fuchsia-500 hover:bg-fuchsia-50/50 dark:hover:bg-fuchsia-950/20 text-zinc-600 dark:text-zinc-300 hover:text-fuchsia-700 dark:hover:text-fuchsia-400 font-medium text-sm flex items-center justify-center gap-2 transition-all group"
       >
-        <span className="w-5 h-5 rounded-full bg-zinc-100 dark:bg-zinc-800 group-hover:bg-emerald-500 group-hover:text-white flex items-center justify-center text-xs font-bold transition-colors">
+        <span className="w-5 h-5 rounded-full bg-zinc-100 dark:bg-zinc-800 group-hover:bg-fuchsia-500 group-hover:text-white flex items-center justify-center text-xs font-bold transition-colors">
           +
         </span>
         <span>Agregar producto manualmente</span>
@@ -115,11 +115,11 @@ export function AddItemForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="p-4 sm:p-5 bg-white dark:bg-zinc-900 border border-emerald-500/30 dark:border-emerald-500/40 rounded-2xl shadow-md ring-2 ring-emerald-500/10 space-y-4 transition-all"
+      className="p-4 sm:p-5 bg-white dark:bg-zinc-900 border border-fuchsia-500/30 dark:border-fuchsia-500/40 rounded-2xl shadow-md ring-2 ring-fuchsia-500/10 space-y-4 transition-all"
     >
       <div className="flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+          <span className="w-2.5 h-2.5 rounded-full bg-fuchsia-500" />
           <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
             Nuevo Producto
           </h4>
@@ -154,7 +154,7 @@ export function AddItemForm({
             className={`w-full px-3 py-2 text-sm rounded-xl border ${
               errors.description
                 ? "border-rose-500 focus:ring-rose-500"
-                : "border-zinc-200 dark:border-zinc-700 focus:ring-emerald-500"
+                : "border-zinc-200 dark:border-zinc-700 focus:ring-fuchsia-500"
             } bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2`}
           />
           {errors.description && (
@@ -220,7 +220,7 @@ export function AddItemForm({
             className={`w-full px-3 py-2 text-sm rounded-xl border ${
               errors.unitPrice
                 ? "border-rose-500 focus:ring-rose-500"
-                : "border-zinc-200 dark:border-zinc-700 focus:ring-emerald-500"
+                : "border-zinc-200 dark:border-zinc-700 focus:ring-fuchsia-500"
             } bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2`}
           />
           {errors.unitPrice && (
@@ -272,7 +272,7 @@ export function AddItemForm({
         </button>
         <button
           type="submit"
-          className="px-5 py-2 text-xs font-semibold rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm hover:shadow transition-all flex items-center gap-1.5"
+          className="px-5 py-2 text-xs font-semibold rounded-xl bg-fuchsia-600 hover:bg-fuchsia-700 text-white shadow-sm hover:shadow transition-all flex items-center gap-1.5"
         >
           <span>+ Agregar a la lista</span>
         </button>

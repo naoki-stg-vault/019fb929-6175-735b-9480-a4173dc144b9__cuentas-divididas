@@ -104,7 +104,7 @@ export function ParticipantBadge({
 
       {/* Optional Amount tag */}
       {amountLabel && (
-        <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-md bg-white/80 dark:bg-black/50 text-emerald-700 dark:text-emerald-300">
+        <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-md bg-white/80 dark:bg-black/50 text-fuchsia-700 dark:text-fuchsia-300">
           {amountLabel}
         </span>
       )}

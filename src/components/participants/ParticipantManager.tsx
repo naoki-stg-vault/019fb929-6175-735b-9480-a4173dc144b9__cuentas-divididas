@@ -69,7 +69,7 @@ export function ParticipantManager({
   const handleStartEdit = (p: Participant) => {
     setEditingId(p.id);
     setEditName(p.name);
-    setEditColorId(p.color || "emerald");
+    setEditColorId(p.color || "fuchsia");
     setConfirmingDeleteId(null);
   };
 
@@ -86,20 +86,6 @@ export function ParticipantManager({
 
   const handleCancelEdit = () => {
     setEditingId(null);
-  };
-
-  // Quick preset additions
-  const handleAddPresetGroup = (names: string[]) => {
-    names.forEach((name, idx) => {
-      if (!participants.some((p) => p.name.toLowerCase() === name.toLowerCase())) {
-        const color = PARTICIPANT_PALETTE[(participants.length + idx) % PARTICIPANT_PALETTE.length].id;
-        onAddParticipant({
-          id: `p_${Date.now()}_${idx}_${Math.random().toString(36).substring(2, 5)}`,
-          name,
-          color,
-        });
-      }
-    });
   };
 
   return (
@@ -126,26 +112,7 @@ export function ParticipantManager({
           </div>
         </div>
 
-        {/* Quick presets for mobile convenience */}
-        {!readOnly && participants.length === 0 && (
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-[11px] text-zinc-400">Plantillas rápidas:</span>
-            <button
-              type="button"
-              onClick={() => handleAddPresetGroup(["Ana", "Carlos"])}
-              className="text-[11px] font-medium px-2 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 transition-colors"
-            >
-              + 2 personas
-            </button>
-            <button
-              type="button"
-              onClick={() => handleAddPresetGroup(["Ana", "Carlos", "Lucía", "Martín"])}
-              className="text-[11px] font-medium px-2 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 transition-colors"
-            >
-              + 4 personas
-            </button>
-          </div>
-        )}
+        {/* Description */}
       </div>
 
       {/* Add Participant Input Section */}
@@ -161,7 +128,7 @@ export function ParticipantManager({
             <div className="relative flex-1">
               <input
                 type="text"
-                placeholder="Nombre o apodo (ej. Ana, Juan, Papá)..."
+                placeholder="Nombre o apodo del participante..."
                 value={nameInput}
                 onChange={(e) => {
                   setNameInput(e.target.value);
@@ -266,7 +233,7 @@ export function ParticipantManager({
                       <button
                         type="button"
                         onClick={() => handleSaveEdit(p.id)}
-                        className="px-2 py-0.5 text-xs font-bold rounded bg-emerald-600 text-white hover:bg-emerald-700"
+                        className="px-2 py-0.5 text-xs font-bold rounded bg-fuchsia-600 text-white hover:bg-fuchsia-700"
                       >
                         ✓
                       </button>

@@ -41,7 +41,7 @@ export function AssignmentProgress({
           <span
             className={`w-2.5 h-2.5 rounded-full ${
               isComplete
-                ? "bg-emerald-500 animate-pulse"
+                ? "bg-fuchsia-500 animate-pulse"
                 : partialItems > 0
                 ? "bg-amber-500"
                 : "bg-blue-500"
@@ -54,7 +54,7 @@ export function AssignmentProgress({
 
         {/* Status Pill */}
         {isComplete ? (
-          <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 flex items-center gap-1">
+          <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-fuchsia-100 dark:bg-fuchsia-950/70 text-fuchsia-800 dark:text-fuchsia-300 flex items-center gap-1">
             <span>✓</span>
             <span>¡100% Asignado!</span>
           </span>
@@ -78,9 +78,9 @@ export function AssignmentProgress({
           <div
             className={`h-full rounded-full transition-all duration-500 ease-out ${
               isComplete
-                ? "bg-gradient-to-r from-emerald-500 to-teal-500"
+                ? "bg-gradient-to-r from-fuchsia-500 to-pink-500"
                 : progressPercentage > 50
-                ? "bg-gradient-to-r from-blue-500 to-emerald-500"
+                ? "bg-gradient-to-r from-blue-500 to-fuchsia-500"
                 : "bg-gradient-to-r from-indigo-500 to-blue-500"
             }`}
             style={{ width: `${Math.min(100, Math.max(0, progressPercentage))}%` }}
@@ -109,7 +109,7 @@ export function AssignmentProgress({
       <div className="pt-2 border-t border-zinc-100 dark:border-zinc-800/80 grid grid-cols-3 gap-2 text-center text-xs">
         <div className="p-2 rounded-xl bg-zinc-50 dark:bg-zinc-800/50">
           <span className="block text-[10px] text-zinc-400 font-medium">Asignados</span>
-          <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+          <span className="text-sm font-bold text-fuchsia-600 dark:text-fuchsia-400">
             {assignedItems}
           </span>
         </div>

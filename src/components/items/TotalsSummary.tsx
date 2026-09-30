@@ -49,7 +49,7 @@ export function TotalsSummary({
       {/* Header / Mobile Accordion Toggle */}
       <div className="p-4 sm:p-5 flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800/80">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">
+          <div className="w-8 h-8 rounded-lg bg-fuchsia-500/10 text-fuchsia-600 dark:text-fuchsia-400 flex items-center justify-center font-bold text-sm">
             $
           </div>
           <div>
@@ -115,7 +115,7 @@ export function TotalsSummary({
                     const val = parseFloat(e.target.value);
                     onDiscountChange?.(isNaN(val) ? 0 : val);
                   }}
-                  className="w-24 px-2 py-1 text-right text-xs rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="w-24 px-2 py-1 text-right text-xs rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
                 />
               </div>
             )}
@@ -135,7 +135,7 @@ export function TotalsSummary({
                     onClick={() => onTaxChange?.(pct)}
                     className={`px-2 py-0.5 text-[11px] rounded font-medium transition-colors ${
                       totals.taxPercent === pct
-                        ? "bg-emerald-500 text-white"
+                        ? "bg-fuchsia-500 text-white"
                         : "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700"
                     }`}
                   >
@@ -177,7 +177,7 @@ export function TotalsSummary({
                     onClick={() => handlePresetTip(preset)}
                     className={`px-3 py-1 text-xs rounded-full font-medium transition-all ${
                       isActive
-                        ? "bg-emerald-600 text-white shadow-sm"
+                        ? "bg-fuchsia-600 text-white shadow-sm"
                         : "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700"
                     }`}
                   >
@@ -208,7 +208,7 @@ export function TotalsSummary({
                     placeholder="%"
                     value={customTip}
                     onChange={handleCustomTipChange}
-                    className="w-16 px-2 py-0.5 text-xs rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 text-right focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    className="w-16 px-2 py-0.5 text-xs rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 text-right focus:outline-none focus:ring-1 focus:ring-fuchsia-500"
                     autoFocus
                   />
                   <span className="text-xs text-zinc-500">%</span>
@@ -229,7 +229,7 @@ export function TotalsSummary({
         </div>
         <div className="text-right">
           <span
-            className="text-2xl sm:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 tracking-tight"
+            className="text-2xl sm:text-3xl font-extrabold text-fuchsia-600 dark:text-fuchsia-400 tracking-tight"
             data-testid="summary-grand-total"
           >
             {formatCurrency(totals.total, currencySymbol)}
