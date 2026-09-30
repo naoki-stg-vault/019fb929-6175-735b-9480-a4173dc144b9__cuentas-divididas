@@ -185,7 +185,7 @@ export function ItemAssignmentView({
             <button
               type="button"
               onClick={handleSave}
-              className="px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition-all flex items-center gap-1.5"
+              className="px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-fuchsia-600 hover:bg-fuchsia-700 text-white shadow-sm transition-all flex items-center gap-1.5"
             >
               <span>✓ Guardar Asignación</span>
             </button>
@@ -195,7 +195,7 @@ export function ItemAssignmentView({
 
       {/* Success Notification */}
       {saveSuccess && (
-        <div className="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-sm flex items-center gap-2 animate-fade-in">
+        <div className="p-3.5 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800 text-fuchsia-800 dark:text-fuchsia-300 text-sm flex items-center gap-2 animate-fade-in">
           <span className="font-bold">✓</span>
           <span>¡Participantes y asignaciones guardadas correctamente!</span>
         </div>
@@ -247,8 +247,8 @@ export function ItemAssignmentView({
                 onClick={() => setFilterMode("assigned")}
                 className={`px-2.5 py-1 rounded-lg font-semibold transition-colors ${
                   filterMode === "assigned"
-                    ? "bg-emerald-600 text-white"
-                    : "text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30"
+                    ? "bg-fuchsia-600 text-white"
+                    : "text-fuchsia-700 dark:text-fuchsia-400 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-950/30"
                 }`}
               >
                 Completos ({progress.assignedItems})
@@ -285,7 +285,7 @@ export function ItemAssignmentView({
               <button
                 type="button"
                 onClick={() => setFilterMode("all")}
-                className="mt-2 text-xs font-semibold text-emerald-600 hover:underline"
+                className="mt-2 text-xs font-semibold text-fuchsia-600 hover:underline"
               >
                 Mostrar todos los productos
               </button>
@@ -371,7 +371,7 @@ export function ItemAssignmentView({
                 {/* Total across participants vs receipt total */}
                 <div className="pt-2 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs font-semibold">
                   <span className="text-zinc-500">Suma distribuida:</span>
-                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">
+                  <span className="text-fuchsia-600 dark:text-fuchsia-400 font-bold">
                     {formatCurrency(progress.assignedReceiptAmount, currencySymbol)}
                   </span>
                 </div>

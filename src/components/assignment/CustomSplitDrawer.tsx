@@ -233,7 +233,7 @@ function CustomSplitForm({
       {/* Modal Header */}
       <div className="p-4 sm:p-5 border-b border-zinc-100 dark:border-zinc-800 flex items-start justify-between gap-3">
         <div>
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-fuchsia-600 dark:text-fuchsia-400">
             División Personalizada
           </span>
           <h3
@@ -379,7 +379,7 @@ function CustomSplitForm({
                           </div>
 
                           <div className="text-right w-20">
-                            <span className="block text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                            <span className="block text-xs font-bold text-fuchsia-600 dark:text-fuchsia-400">
                               {formatCurrency(amount, currencySymbol)}
                             </span>
                             <span className="block text-[10px] text-zinc-400">
@@ -466,7 +466,7 @@ function CustomSplitForm({
                 <div
                   className={`p-3 rounded-xl border text-xs font-medium space-y-1 ${
                     amountCalculations.isExactMatch
-                      ? "bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300"
+                      ? "bg-fuchsia-50 dark:bg-fuchsia-950/30 border-fuchsia-200 dark:border-fuchsia-800 text-fuchsia-800 dark:text-fuchsia-300"
                       : amountCalculations.diff > 0
                       ? "bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300"
                       : "bg-rose-50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300"
@@ -510,7 +510,7 @@ function CustomSplitForm({
           type="button"
           disabled={selectedIds.size === 0}
           onClick={handleSaveAssignment}
-          className="px-5 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 text-white shadow-xs transition-all flex items-center gap-1.5"
+          className="px-5 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-fuchsia-600 hover:bg-fuchsia-700 disabled:opacity-40 text-white shadow-xs transition-all flex items-center gap-1.5"
         >
           <span>✓ Aplicar División</span>
         </button>

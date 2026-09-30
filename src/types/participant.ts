@@ -18,14 +18,14 @@ export interface ParticipantColorOption {
 
 export const PARTICIPANT_PALETTE: ParticipantColorOption[] = [
   {
-    id: "emerald",
-    name: "Esmeralda",
-    hex: "#10b981",
-    bgClass: "bg-emerald-500",
-    textClass: "text-emerald-700 dark:text-emerald-300",
-    borderClass: "border-emerald-300 dark:border-emerald-700",
-    badgeClass: "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800",
-    selectedRingClass: "ring-emerald-500",
+    id: "fuchsia",
+    name: "Fucsia",
+    hex: "#d946ef",
+    bgClass: "bg-fuchsia-500",
+    textClass: "text-fuchsia-700 dark:text-fuchsia-300",
+    borderClass: "border-fuchsia-300 dark:border-fuchsia-700",
+    badgeClass: "bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-950/60 dark:text-fuchsia-300 border-fuchsia-300 dark:border-fuchsia-800",
+    selectedRingClass: "ring-fuchsia-500",
   },
   {
     id: "blue",

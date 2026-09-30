@@ -106,7 +106,7 @@ export function EditableItemsTable({
             <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-50">
               {title}
             </h2>
-            <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">
+            <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-fuchsia-100 dark:bg-fuchsia-950 text-fuchsia-800 dark:text-fuchsia-300">
               {items.length} {items.length === 1 ? "ítem" : "ítems"}
             </span>
           </div>
@@ -152,7 +152,7 @@ export function EditableItemsTable({
             <button
               type="button"
               onClick={handleSave}
-              className="px-4 py-2 text-xs font-semibold rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition-all flex items-center gap-1.5"
+              className="px-4 py-2 text-xs font-semibold rounded-xl bg-fuchsia-600 hover:bg-fuchsia-700 text-white shadow-sm transition-all flex items-center gap-1.5"
             >
               <span>✓ Confirmar Productos</span>
             </button>
@@ -162,7 +162,7 @@ export function EditableItemsTable({
 
       {/* Success Notification */}
       {saveSuccessMessage && (
-        <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-sm flex items-center justify-between animate-fade-in">
+        <div className="p-3 rounded-xl bg-fuchsia-50 dark:bg-fuchsia-950/40 border border-fuchsia-200 dark:border-fuchsia-800 text-fuchsia-800 dark:text-fuchsia-300 text-sm flex items-center justify-between animate-fade-in">
           <div className="flex items-center gap-2">
             <span className="font-bold">✓</span>
             <span>Productos y totales actualizados correctamente para el desglose.</span>
