@@ -53,7 +53,7 @@ export function TotalsSummary({
             $
           </div>
           <div>
-            <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
+            <h3 className="text-base font-semibold text-[#143d26]">
               Resumen de Totales
             </h3>
             <p className="text-xs text-zinc-500 dark:text-zinc-400">

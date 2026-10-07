@@ -120,7 +120,7 @@ export function AddItemForm({
       <div className="flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+          <h4 className="text-sm font-semibold text-[#143d26]">
             Nuevo Producto
           </h4>
         </div>

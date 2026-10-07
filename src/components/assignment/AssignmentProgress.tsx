@@ -47,7 +47,7 @@ export function AssignmentProgress({
                 : "bg-blue-500"
             }`}
           />
-          <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100">
+          <h4 className="text-sm sm:text-base font-bold text-[#143d26]">
             Progreso de asignación
           </h4>
         </div>
