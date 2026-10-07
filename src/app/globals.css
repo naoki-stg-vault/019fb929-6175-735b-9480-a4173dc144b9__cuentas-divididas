@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f4ee;
+  --foreground: #3d3226;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Warm Beige Palette */
+  --color-beige-50: #faf7f2;
+  --color-beige-100: #f4eee5;
+  --color-beige-200: #e8ded0;
+  --color-beige-300: #d8cbb8;
+  --color-beige-400: #baa894;
+  --color-beige-500: #9c8974;
+  --color-beige-600: #88745d;
+  --color-beige-700: #6d5b47;
+  --color-beige-800: #514233;
+  --color-beige-900: #372b21;
+  --color-beige-950: #221a14;
+
+  /* Overrides for zinc to warm beige neutrals */
+  --color-zinc-50: #faf7f2;
+  --color-zinc-100: #f4eee5;
+  --color-zinc-200: #e8ded0;
+  --color-zinc-300: #d8cbb8;
+  --color-zinc-400: #baa894;
+  --color-zinc-500: #9c8974;
+  --color-zinc-600: #7f6e5b;
+  --color-zinc-700: #645545;
+  --color-zinc-800: #493d31;
+  --color-zinc-900: #342a20;
+  --color-zinc-950: #221b13;
+
+  /* Soft ivory cream for white */
+  --color-white: #fdfbf7;
+
+  /* Warm tan / camel beige for emerald accents */
+  --color-emerald-50: #faf6f0;
+  --color-emerald-100: #f2e9dc;
+  --color-emerald-200: #e4d4be;
+  --color-emerald-300: #d0b89b;
+  --color-emerald-400: #b89b77;
+  --color-emerald-500: #9f805a;
+  --color-emerald-600: #886944;
+  --color-emerald-700: #6e5234;
+  --color-emerald-800: #543d26;
+  --color-emerald-900: #3b2a19;
+  --color-emerald-950: #24190e;
+
+  /* Warm taupe / hazelnut beige for indigo accents */
+  --color-indigo-50: #fcf9f5;
+  --color-indigo-100: #f4ecdf;
+  --color-indigo-200: #e6d9c6;
+  --color-indigo-300: #d3c0a5;
+  --color-indigo-400: #baa485;
+  --color-indigo-500: #9e8768;
+  --color-indigo-600: #826c50;
+  --color-indigo-700: #68543d;
+  --color-indigo-800: #4f3f2d;
+  --color-indigo-900: #382b1d;
+  --color-indigo-950: #21190f;
+
+  /* Warm sand beige for blue accents */
+  --color-blue-50: #faf6f0;
+  --color-blue-100: #f1e8d7;
+  --color-blue-200: #e2d3bb;
+  --color-blue-300: #cfb998;
+  --color-blue-400: #b99c75;
+  --color-blue-500: #a08157;
+  --color-blue-600: #85673f;
+  --color-blue-700: #6a4f2e;
+  --color-blue-800: #4f3920;
+  --color-blue-900: #372614;
+  --color-blue-950: #21160a;
+
+  /* Warm toasted amber beige for amber accents */
+  --color-amber-50: #fdf8ee;
+  --color-amber-100: #f9edd5;
+  --color-amber-200: #f1d8ab;
+  --color-amber-300: #e4bd7d;
+  --color-amber-400: #d29e50;
+  --color-amber-500: #b88235;
+  --color-amber-600: #986626;
+  --color-amber-700: #774d1c;
+  --color-amber-800: #583713;
+  --color-amber-900: #3c2b12;
+  --color-amber-950: #241506;
+
+  /* Warm muted rose-beige for rose accents */
+  --color-rose-50: #faf4f2;
+  --color-rose-100: #f3e6e1;
+  --color-rose-200: #e8cfc6;
+  --color-rose-300: #d7b1a4;
+  --color-rose-400: #c19080;
+  --color-rose-500: #ab7361;
+  --color-rose-600: #925848;
+  --color-rose-700: #774335;
+  --color-rose-800: #5d3226;
+  --color-rose-900: #422219;
+  --color-rose-950: #29140e;
+
+  /* Warm caramel/sand for teal accents */
+  --color-teal-50: #faf6f0;
+  --color-teal-100: #f2e9dc;
+  --color-teal-200: #e4d4be;
+  --color-teal-300: #d0b89b;
+  --color-teal-400: #b89b77;
+  --color-teal-500: #8c6e49;
+  --color-teal-600: #7b5f3d;
+  --color-teal-700: #664d30;
+  --color-teal-800: #503b23;
+  --color-teal-900: #382816;
+  --color-teal-950: #22170c;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
