@@ -59,7 +59,7 @@ export default function Home() {
                 CD
               </span>
               <div>
-                <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#143d26]">
+                <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">
                   Cuentas Divididas
                 </h1>
                 <p className="text-xs text-zinc-500 dark:text-zinc-400">

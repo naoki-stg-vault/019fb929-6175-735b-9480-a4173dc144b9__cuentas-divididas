@@ -164,7 +164,7 @@ export function ItemAssignmentCard({
                 {item.category}
               </span>
             )}
-            <h4 className="text-sm sm:text-base font-bold text-[#143d26]">
+            <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100">
               {item.description}
             </h4>
           </div>

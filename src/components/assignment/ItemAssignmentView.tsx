@@ -158,7 +158,7 @@ export function ItemAssignmentView({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white dark:bg-zinc-900 p-4 sm:p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-xs">
         <div>
           <div className="flex items-center gap-2.5">
-            <h2 className="text-xl sm:text-2xl font-bold text-[#143d26]">
+            <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-50">
               {title}
             </h2>
             <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-300">
@@ -328,7 +328,7 @@ export function ItemAssignmentView({
             data-testid="participants-breakdown"
           >
             <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-2.5">
-              <h4 className="text-sm font-bold text-[#143d26]">
+              <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
                 Subtotal por comensal
               </h4>
               <span className="text-[11px] text-zinc-400 font-medium">

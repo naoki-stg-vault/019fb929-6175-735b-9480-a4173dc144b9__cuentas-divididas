@@ -126,7 +126,7 @@ export function ItemCard({
       {/* Description / Product Name */}
       <div>
         {readOnly ? (
-          <h4 className="text-sm font-semibold text-[#143d26]">
+          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
             {item.description}
           </h4>
         ) : isEditingDescription ? (

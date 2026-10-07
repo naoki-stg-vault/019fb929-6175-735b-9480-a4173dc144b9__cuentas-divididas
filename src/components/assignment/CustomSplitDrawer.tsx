@@ -238,7 +238,7 @@ function CustomSplitForm({
           </span>
           <h3
             id="custom-split-title"
-            className="text-base sm:text-lg font-bold text-[#143d26]"
+            className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-50"
           >
             {item.description}
           </h3>

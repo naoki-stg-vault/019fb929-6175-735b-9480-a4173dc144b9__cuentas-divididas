@@ -73,7 +73,7 @@ export default function ReceiptAssignPage({
       <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 p-6 flex items-center justify-center">
         <div className="max-w-md w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 text-center space-y-4">
           <span className="text-3xl">⚠️</span>
-          <h2 className="text-lg font-bold text-[#143d26]">
+          <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
             {error || "Comprobante no encontrado"}
           </h2>
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
@@ -171,7 +171,7 @@ export default function ReceiptAssignPage({
               ← Inicio
             </Link>
             <div>
-              <h1 className="text-xl sm:text-2xl font-black text-[#143d26]">{receipt.title}</h1>
+              <h1 className="text-xl sm:text-2xl font-black">{receipt.title}</h1>
               <p className="text-xs text-zinc-500">
                 Paso 3: Asignación de participantes y división de consumo
               </p>

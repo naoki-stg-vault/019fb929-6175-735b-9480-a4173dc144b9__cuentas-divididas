@@ -114,7 +114,7 @@ export function ParticipantManager({
             👥
           </div>
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-[#143d26] flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
               Participantes
               <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
                 {participants.length}
