@@ -172,19 +172,19 @@ export function EditableItemsTable({
 
       {/* OCR Warning Alert if low-confidence items exist */}
       {lowConfidenceCount > 0 && (
-        <div className="p-4 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="p-4 rounded-xl bg-red-50/80 dark:bg-red-950/30 border border-red-200 dark:border-red-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-start sm:items-center gap-2.5">
-            <span className="text-amber-600 dark:text-amber-400 font-bold text-base mt-0.5 sm:mt-0">
+            <span className="text-red-600 dark:text-red-400 font-bold text-base mt-0.5 sm:mt-0">
               ⚠️
             </span>
             <div>
-              <p className="text-xs sm:text-sm font-semibold text-amber-900 dark:text-amber-200">
+              <p className="text-xs sm:text-sm font-semibold text-red-900 dark:text-red-200">
                 {lowConfidenceCount}{" "}
                 {lowConfidenceCount === 1
                   ? "producto requiere revisión de OCR"
                   : "productos requieren revisión de OCR"}
               </p>
-              <p className="text-xs text-amber-700 dark:text-amber-400">
+              <p className="text-xs text-red-700 dark:text-red-400">
                 Algunos precios o nombres pueden tener caracteres dudosos en el comprobante.
               </p>
             </div>
@@ -193,7 +193,7 @@ export function EditableItemsTable({
           <button
             type="button"
             onClick={() => setFilterNeedsReview(!filterNeedsReview)}
-            className="self-start sm:self-auto text-xs font-semibold px-3 py-1.5 rounded-lg bg-amber-200/80 dark:bg-amber-900/60 text-amber-900 dark:text-amber-100 hover:bg-amber-300 dark:hover:bg-amber-900 transition-colors"
+            className="self-start sm:self-auto text-xs font-semibold px-3 py-1.5 rounded-lg bg-red-200/80 dark:bg-red-900/60 text-red-900 dark:text-red-100 hover:bg-red-300 dark:hover:bg-red-900 transition-colors"
           >
             {filterNeedsReview ? "Mostrar todos los ítems" : "Filtrar por revisar"}
           </button>
