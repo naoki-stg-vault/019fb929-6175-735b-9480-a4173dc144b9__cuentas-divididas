@@ -225,7 +225,7 @@ export function TotalsSummary({
           <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
             Total General
           </span>
-          <p className="text-xs text-zinc-400">Incluye IVA y propina</p>
+          <p className="text-xs text-zinc-400">IVA y propina incluidos</p>
         </div>
         <div className="text-right">
           <span
