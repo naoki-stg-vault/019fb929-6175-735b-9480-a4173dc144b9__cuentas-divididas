@@ -107,7 +107,7 @@ export function AddItemForm({
         <span className="w-5 h-5 rounded-full bg-zinc-100 dark:bg-zinc-800 group-hover:bg-emerald-500 group-hover:text-white flex items-center justify-center text-xs font-bold transition-colors">
           +
         </span>
-        <span>Agregar producto manualmente</span>
+        <span>Añadir producto a mano</span>
       </button>
     );
   }
