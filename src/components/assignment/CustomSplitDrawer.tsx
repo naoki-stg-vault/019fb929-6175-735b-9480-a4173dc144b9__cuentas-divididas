@@ -286,7 +286,7 @@ function CustomSplitForm({
             }`}
           >
             <span>💵</span>
-            <span>Por montos fijos</span>
+            <span>Montos fijos</span>
           </button>
         </div>
 
